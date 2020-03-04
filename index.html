@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="container pt-5">
+        <button onclick="getLocation()">Koordinat saya</button>
+        <p id="demo"></p>
+
+        <br>
+        <p><b>Menentukan 4 titik sudut ruangan</b></p>
+
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <p><b>Sudut 1</b></p>
+                    <button onclick="getLocation(1)">1st</button>
+                    <p id="sudut1"></p>
+                </div>
+                <div class="col-md-3">
+                    <p><b>Sudut 2</b></p>
+                    <button onclick="getLocation(2)">2nd</button>
+                    <p id="sudut2"></p>
+                </div>
+                <div class="col-md-3">
+                    <p><b>Sudut 3</b></p>
+                    <button onclick="getLocation(3)">3rd</button>
+                    <p id="sudut3"></p>
+                </div>
+                <div class="col-md-3">
+                    <p><b>Sudut 4</b></p>
+                    <button onclick="getLocation(4)">4th</button>
+                    <p id="sudut4"></p>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <button onclick="buka()">Buka Presensi</button>
+        <br>
+        <button onclick="tutup()">Tutup Presensi</button>
+        <br><br>
+        <button onclick="absen()">Lakukan Presensi</button>
+        <p id="hasil"></p>
+
+        <div id="map" style="width: 1000px; height: 600px;"></div>
+    </div>
+
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        var newMap = L.map('map').setView([-5.2327875,119.5032977], 19);
+        var greenIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [15, 21],
+            iconAnchor: [7, 21],
+            popupAnchor: [1, -23],
+            shadowSize: [21, 21]
+        });
+        var redIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+        var latlngs = [[-5.233,119.5035], [-5.23285,119.5033]];
+        var rectOptions = {color: 'Red', weight: 1}
+        var rectangle = L.rectangle(latlngs, rectOptions);
+        rectangle.addTo(newMap);
+        L.marker([-5.2327875,119.5032977], {icon: redIcon}).addTo(newMap);//outside
+        L.marker([-5.2329,119.5034]).addTo(newMap); //inside
+        L.marker([-5.233,119.5035], {icon: greenIcon}).addTo(newMap);
+        L.marker([-5.23285,119.5035], {icon: greenIcon}).addTo(newMap);
+        L.marker([-5.233,119.5033], {icon: greenIcon}).addTo(newMap);
+        L.marker([-5.23285,119.5033], {icon: greenIcon}).addTo(newMap);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href=”http://osm.org/copyright”>OpenStreetMap</a> contributors'
+        }).addTo(newMap);
+    </script>
+
+    <script>
+        function pointInRectangle(m, r){
+            var AB = vector(r.A, r.B);
+            var AM = vector(r.A, m);
+            var BC = vector(r.B, r.C);
+            var BM = vector(r.B, m);
+
+            var dotABAM = dot(AB, AM);
+            var dotABAB = dot(AB, AB);
+            var dotBCBM = dot(BC, BM);
+            var dotBCBC = dot(BC, BC);
+            return 0 <= dotABAM && dotABAM <= dotABAB && dotBCBM && dotBCBM <= dotBCBC;
+        }
+
+        function vector(p1, p2){
+            return{
+                x: (p2.x - p1.x),
+                y: (p2.y - p1.y)
+            };
+        }
+
+        function dot(u, v){
+            return u.x * v.x + u.y * v.y;
+        }
+    </script>
+
+    <script>
+        var x = document.getElementById("demo");
+        var sudut1 = document.getElementById("sudut1");
+        var sudut2 = document.getElementById("sudut2");
+        var sudut3 = document.getElementById("sudut3");
+        var sudut3 = document.getElementById("sudut3");
+        var hasil = document.getElementById("hasil");
+        
+        var listpoints = []
+        var mycoord = []
+
+        var r = {}
+        var m = {}
+
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        var date = new Date();
+        var currentTime = date.getTime();
+        var currentH = date.getHours()
+        var currentM = date.getMinutes()
+        console.log(currentH, currentM)
+        var jadwal = "01.00-02.30";
+        // var jadwal = "13.00-15.30";
+        var jadwalH1 = parseInt(jadwal.substr(0,2))
+        var jadwalM1 = parseInt(jadwal.substr(3,5))
+        var jadwalH2 = parseInt(jadwal.substr(6,8))
+        var jadwalM2 = parseInt(jadwal.substr(9,11))
+        console.log(jadwalH1, jadwalM1, jadwalH2, jadwalM2)
+        var allowed = false;
+        var isInSchedule = false;
+
+        function buka(){
+            checkInSchedule()
+            if(isInSchedule){
+                allowed = true;
+                alert("Presensi dibuka");
+            }else{
+                alert("Belum masuk jadwal mata kuliah")
+            }
+        }
+
+        function tutup(){
+            alert("Presensi ditutup");
+            allowed = false;
+        }
+
+        function checkInSchedule(){
+            if ((currentH >= jadwalH1 && currentM >= jadwalM1) && (currentH <= jadwalH2 && currentM <= jadwalM2)) {
+                isInSchedule = true;
+                // allowed = true;
+            }else{
+                isInSchedule = false;
+            }
+        }
+
+        function absen(){
+            getLocation(0);
+        }
+
+        function getLocation(sudut) {
+            if (navigator.geolocation) {
+                switch(sudut){
+                    case 0: navigator.geolocation.getCurrentPosition(returnPosition, error, options); break;
+                    case 1: navigator.geolocation.getCurrentPosition(showPosition1, error, options); break;
+                    case 2: navigator.geolocation.getCurrentPosition(showPosition2, error, options); break;
+                    case 3: navigator.geolocation.getCurrentPosition(showPosition3, error, options); break;
+                    case 4: navigator.geolocation.getCurrentPosition(showPosition4, error, options); break;
+                    default: navigator.geolocation.getCurrentPosition(showPosition, error, options);
+
+                }
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function returnPosition(position){
+            var koord = position.coords;
+            mycoord.push(koord.latitude, koord.longitude);
+            // r = {
+            //     A: {x: listpoints[0], y: listpoints[1]},
+            //     B: {x: listpoints[2], y: listpoints[3]},
+            //     C: {x: listpoints[4], y: listpoints[5]},
+            //     D: {x: listpoints[6], y: listpoints[7]}
+            // }
+            r = {
+                A: {x: -5.233, y: 119.5035},
+                B: {x: -5.23285, y: 119.5035},
+                C: {x: -5.233, y: 119.5033},
+                D: {x: -5.23285, y: 119.5033},
+            }
+            // m = {x: mycoord[0], y: mycoord[1]};
+            m = {x: -5.2329, y: 119.5034}; //inside
+            // m = {x: -5.2327875, y: 119.5032977}; //outside
+            // m = {x: -5.233, y: 119.5035}; //inline
+            var result = pointInRectangle(m, r);
+            var keterangan;
+            
+            if(allowed){
+                if(result){
+                    keterangan =  "Hadir (Di dalam Area)"
+                }else{
+                    keterangan =  "Gagal, Anda berada di luar area"
+                }
+                hasil.innerHTML = "Koordinat Anda: " + mycoord[0] + ", " + mycoord[1] + "<br>Keterangan: " + keterangan;
+            }else{
+                alert("Presensi belum dibuka")
+            }
+            
+        }
+
+        function showPosition(position) {
+            var koord = position.coords;
+            x.innerHTML =  "[Lat,Long]: " + koord.latitude + ", " + koord.longitude;
+        }
+
+        function showPosition1(position) {
+            var koord = position.coords;
+            sudut1.innerHTML =  "#1 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
+            listpoints.push(koord.latitude, koord.longitude);    
+        }
+
+        function showPosition2(position) {
+            var koord = position.coords;
+            sudut2.innerHTML =  "#2 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
+            listpoints.push(koord.latitude, koord.longitude);
+        }
+
+        function showPosition3(position) {
+            var koord = position.coords;
+            sudut3.innerHTML =  "#3 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
+            listpoints.push(koord.latitude, koord.longitude);
+        }
+
+        function showPosition4(position) {
+            var koord = position.coords;
+            sudut4.innerHTML =  "#4 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
+            listpoints.push(koord.latitude, koord.longitude);
+        }
+
+        function error(err) {
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
+    </script>
+    
+
+</body>
+</html>
