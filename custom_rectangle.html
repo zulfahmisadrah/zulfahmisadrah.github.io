@@ -16,7 +16,32 @@
         <p id="demo"></p>
 
         <br>
-        <a href="custom_rectangle.html">Real Test</a>
+        <p><b>Menentukan 4 titik sudut ruangan</b></p>
+
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <p><b>Sudut 1</b></p>
+                    <button onclick="getLocation(1)">1st</button>
+                    <p id="sudut1"></p>
+                </div>
+                <div class="col-md-3">
+                    <p><b>Sudut 2</b></p>
+                    <button onclick="getLocation(2)">2nd</button>
+                    <p id="sudut2"></p>
+                </div>
+                <div class="col-md-3">
+                    <p><b>Sudut 3</b></p>
+                    <button onclick="getLocation(3)">3rd</button>
+                    <p id="sudut3"></p>
+                </div>
+                <div class="col-md-3">
+                    <p><b>Sudut 4</b></p>
+                    <button onclick="getLocation(4)">4th</button>
+                    <p id="sudut4"></p>
+                </div>
+            </div>
+        </div>
 
         <br>
         <button onclick="buka()">Buka Presensi</button>
@@ -49,16 +74,16 @@
             popupAnchor: [1, -34],
             shadowSize: [41, 41]
         });
-        var latlngs = [[-5.233,119.5035], [-5.23285,119.5033]];
-        var rectOptions = {color: 'Red', weight: 1}
-        var rectangle = L.rectangle(latlngs, rectOptions);
-        rectangle.addTo(newMap);
-        L.marker([-5.2327875,119.5032977], {icon: redIcon}).addTo(newMap);//outside
-        L.marker([-5.2329,119.5034]).addTo(newMap); //inside
-        L.marker([-5.233,119.5035], {icon: greenIcon}).addTo(newMap);
-        L.marker([-5.23285,119.5035], {icon: greenIcon}).addTo(newMap);
-        L.marker([-5.233,119.5033], {icon: greenIcon}).addTo(newMap);
-        L.marker([-5.23285,119.5033], {icon: greenIcon}).addTo(newMap);
+        // var latlngs = [[-5.233,119.5035], [-5.23285,119.5033]];
+        // var rectOptions = {color: 'Red', weight: 1}
+        // var rectangle = L.rectangle(latlngs, rectOptions);
+        // rectangle.addTo(newMap);
+        // L.marker([-5.2327875,119.5032977], {icon: redIcon}).addTo(newMap);//outside
+        // L.marker([-5.2329,119.5034]).addTo(newMap); //inside
+        // L.marker([-5.233,119.5035], {icon: greenIcon}).addTo(newMap);
+        // L.marker([-5.23285,119.5035], {icon: greenIcon}).addTo(newMap);
+        // L.marker([-5.233,119.5033], {icon: greenIcon}).addTo(newMap);
+        // L.marker([-5.23285,119.5033], {icon: greenIcon}).addTo(newMap);
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href=”http://osm.org/copyright”>OpenStreetMap</a> contributors'
         }).addTo(newMap);
@@ -170,22 +195,27 @@
         }
 
         function returnPosition(position){
+            var latlngs = [[listpoints[0],listpoints[1]], [listpoints[6],listpoints[7]]];
+            var rectOptions = {color: 'Blue', weight: 1}
+            var rectangle = L.rectangle(latlngs, rectOptions);
+            rectangle.addTo(newMap);
+            L.marker([mycoord[0],mycoord[1]]).addTo(newMap);
             var koord = position.coords;
             mycoord.push(koord.latitude, koord.longitude);
-            // r = {
-            //     A: {x: listpoints[0], y: listpoints[1]},
-            //     B: {x: listpoints[2], y: listpoints[3]},
-            //     C: {x: listpoints[4], y: listpoints[5]},
-            //     D: {x: listpoints[6], y: listpoints[7]}
-            // }
             r = {
-                A: {x: -5.233, y: 119.5035},
-                B: {x: -5.23285, y: 119.5035},
-                C: {x: -5.233, y: 119.5033},
-                D: {x: -5.23285, y: 119.5033},
+                A: {x: listpoints[0], y: listpoints[1]},
+                B: {x: listpoints[2], y: listpoints[3]},
+                C: {x: listpoints[4], y: listpoints[5]},
+                D: {x: listpoints[6], y: listpoints[7]}
             }
-            // m = {x: mycoord[0], y: mycoord[1]};
-            m = {x: -5.2329, y: 119.5034}; //inside
+            // r = {
+            //     A: {x: -5.233, y: 119.5035},
+            //     B: {x: -5.23285, y: 119.5035},
+            //     C: {x: -5.233, y: 119.5033},
+            //     D: {x: -5.23285, y: 119.5033},
+            // }
+            m = {x: mycoord[0], y: mycoord[1]};
+            // m = {x: -5.2329, y: 119.5034}; //inside
             // m = {x: -5.2327875, y: 119.5032977}; //outside
             // m = {x: -5.233, y: 119.5035}; //inline
             var result = pointInRectangle(m, r);
