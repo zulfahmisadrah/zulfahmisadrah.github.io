@@ -124,11 +124,30 @@
         var sudut3 = document.getElementById("sudut3");
         var sudut3 = document.getElementById("sudut3");
         var hasil = document.getElementById("hasil");
-        
-        var jadwal = "13.00-15.30";
 
+        var allowed = false;
+        var isInSchedule = false;
+
+        var jadwal = "13.00-15.30";
+        var date = new Date();
+        var currentTime = date.getTime();
+        var currentH = date.getHours()
+        var currentM = date.getMinutes()
+        console.log(currentH, currentM)
+        // var jadwal = "01.00-02.30";
+        // var jadwal = "13.00-15.30";
+        var jadwalH1 = parseInt(jadwal.substr(0,2))
+        var jadwalM1 = parseInt(jadwal.substr(3,5))
+        var jadwalH2 = parseInt(jadwal.substr(6,8))
+        var jadwalM2 = parseInt(jadwal.substr(9,11))
+        console.log(jadwalH1, jadwalM1, jadwalH2, jadwalM2)
         function setJadwal(){
             jadwal = document.getElementById("jadwal").value;
+            jadwalH1 = parseInt(jadwal.substr(0,2))
+            jadwalM1 = parseInt(jadwal.substr(3,5))
+            jadwalH2 = parseInt(jadwal.substr(6,8))
+            jadwalM2 = parseInt(jadwal.substr(9,11))
+            console.log(jadwalH1, jadwalM1, jadwalH2, jadwalM2)
             alert("Jadwal: " + jadwal)
         }
 
@@ -143,21 +162,6 @@
             timeout: 5000,
             maximumAge: 0
         };
-
-        var date = new Date();
-        var currentTime = date.getTime();
-        var currentH = date.getHours()
-        var currentM = date.getMinutes()
-        console.log(currentH, currentM)
-        // var jadwal = "01.00-02.30";
-        // var jadwal = "13.00-15.30";
-        var jadwalH1 = parseInt(jadwal.substr(0,2))
-        var jadwalM1 = parseInt(jadwal.substr(3,5))
-        var jadwalH2 = parseInt(jadwal.substr(6,8))
-        var jadwalM2 = parseInt(jadwal.substr(9,11))
-        console.log(jadwalH1, jadwalM1, jadwalH2, jadwalM2)
-        var allowed = false;
-        var isInSchedule = false;
 
         function buka(){
             checkInSchedule()
@@ -175,7 +179,11 @@
         }
 
         function checkInSchedule(){
-            if ((currentH >= jadwalH1 && currentM >= jadwalM1) && (currentH <= jadwalH2 && currentM <= jadwalM2)) {
+            var jadwal1 = parseInt("" +jadwalH1 + jadwalM1)
+            var jadwal2 = parseInt("" +jadwalH2 + jadwalM2)
+            var current = parseInt("" +currentH + currentM)
+            console.log(jadwal1, jadwal2, current)
+            if (current>=jadwal1 && current<=jadwal2) {
                 isInSchedule = true;
                 // allowed = true;
             }else{
@@ -204,13 +212,15 @@
         }
 
         function returnPosition(position){
+            var koord = position.coords;
+            mycoord.push(koord.latitude, koord.longitude);
+
             var latlngs = [[listpoints[0],listpoints[1]], [listpoints[6],listpoints[7]]];
-            var rectOptions = {color: 'Blue', weight: 1}
+            var rectOptions = {color: 'Red', weight: 1}
             var rectangle = L.rectangle(latlngs, rectOptions);
             rectangle.addTo(newMap);
             L.marker([mycoord[0],mycoord[1]]).addTo(newMap);
-            var koord = position.coords;
-            mycoord.push(koord.latitude, koord.longitude);
+            
             r = {
                 A: {x: listpoints[0], y: listpoints[1]},
                 B: {x: listpoints[2], y: listpoints[3]},
