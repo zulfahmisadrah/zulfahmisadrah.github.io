@@ -253,6 +253,11 @@
             
         }
 
+        var filled1 = false;
+        var filled2 = false;
+        var filled3 = false;
+        var filled4 = false;
+
         function showPosition(position) {
             var koord = position.coords;
             x.innerHTML =  "[Lat,Long]: " + koord.latitude + ", " + koord.longitude;
@@ -261,25 +266,45 @@
         function showPosition1(position) {
             var koord = position.coords;
             sudut1.innerHTML =  "#1 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
-            listpoints.push(koord.latitude, koord.longitude);    
+            if(filled1){
+                listpoints[0] = koord.latitude;
+                listpoints[1] = koord.longitude;
+            }else{
+                listpoints.push(koord.latitude, koord.longitude);    
+            }
         }
 
         function showPosition2(position) {
             var koord = position.coords;
             sudut2.innerHTML =  "#2 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
-            listpoints.push(koord.latitude, koord.longitude);
+            if(filled2){
+                listpoints[2] = koord.latitude;
+                listpoints[3] = koord.longitude;
+            }else{
+                listpoints.push(koord.latitude, koord.longitude);    
+            }
         }
 
         function showPosition3(position) {
             var koord = position.coords;
             sudut3.innerHTML =  "#3 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
-            listpoints.push(koord.latitude, koord.longitude);
+            if(filled3){
+                listpoints[4] = koord.latitude;
+                listpoints[5] = koord.longitude;
+            }else{
+                listpoints.push(koord.latitude, koord.longitude);    
+            }
         }
 
         function showPosition4(position) {
             var koord = position.coords;
             sudut4.innerHTML =  "#4 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
-            listpoints.push(koord.latitude, koord.longitude);
+            if(filled4){
+                listpoints[6] = koord.latitude;
+                listpoints[7] = koord.longitude;
+            }else{
+                listpoints.push(koord.latitude, koord.longitude);    
+            }
         }
 
         function error(err) {
