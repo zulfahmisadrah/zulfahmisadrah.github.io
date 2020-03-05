@@ -13,7 +13,7 @@
 <body>
     <div class="container pt-5">
         <label for="jadwal">Jadwal</label>
-        <input id="jadwal" type="text" placeholder="ex: 10.00-12.30">
+        <input id="jadwal" type="text" placeholder="ex: 13.00-15.30">
         <button onclick="setJadwal()">Set Jadwal</button>
         <p id="demo"></p>
 
@@ -102,7 +102,7 @@
             var dotABAB = dot(AB, AB);
             var dotBCBM = dot(BC, BM);
             var dotBCBC = dot(BC, BC);
-            return 0 <= dotABAM && dotABAM <= dotABAB && dotBCBM && dotBCBM <= dotBCBC;
+            return 0 <= dotABAM && dotABAM <= dotABAB && 0 <= dotBCBM && dotBCBM <= dotBCBC;
         }
 
         function vector(p1, p2){
@@ -192,6 +192,9 @@
         }
 
         function absen(){
+            if(listpoints[0]==null){
+                alert("Belum ada data area")
+            }
             getLocation(0);
         }
 
