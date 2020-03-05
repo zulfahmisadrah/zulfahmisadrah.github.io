@@ -136,17 +136,17 @@
         console.log(currentH, currentM)
         // var jadwal = "01.00-02.30";
         // var jadwal = "13.00-15.30";
-        var jadwalH1 = parseInt(jadwal.substr(0,2))
-        var jadwalM1 = parseInt(jadwal.substr(3,5))
-        var jadwalH2 = parseInt(jadwal.substr(6,8))
-        var jadwalM2 = parseInt(jadwal.substr(9,11))
-        console.log(jadwalH1, jadwalM1, jadwalH2, jadwalM2)
+        var jadwalH1 = jadwal.substr(0,2)
+        var jadwalM1 = jadwal.substr(3,2)
+        var jadwalH2 = jadwal.substr(6,2)
+        var jadwalM2 = jadwal.substr(9,2)
+        console.log(jadwal, jadwalH1, jadwalM1, jadwalH2, jadwalM2)
         function setJadwal(){
             jadwal = document.getElementById("jadwal").value;
-            jadwalH1 = parseInt(jadwal.substr(0,2))
-            jadwalM1 = parseInt(jadwal.substr(3,5))
-            jadwalH2 = parseInt(jadwal.substr(6,8))
-            jadwalM2 = parseInt(jadwal.substr(9,11))
+            jadwalH1 = jadwal.substr(0,2)
+            jadwalM1 = jadwal.substr(3,2)
+            jadwalH2 = jadwal.substr(6,2)
+            jadwalM2 = jadwal.substr(9,2)
             console.log(jadwalH1, jadwalM1, jadwalH2, jadwalM2)
             alert("Jadwal: " + jadwal)
         }
