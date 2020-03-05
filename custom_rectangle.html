@@ -12,7 +12,9 @@
 </head>
 <body>
     <div class="container pt-5">
-        <button onclick="getLocation()">Koordinat saya</button>
+        <label for="jadwal">Jadwal</label>
+        <input id="jadwal" type="text" placeholder="ex: 10.00-12.30">
+        <button onclick="setJadwal()">Set Jadwal</button>
         <p id="demo"></p>
 
         <br>
@@ -123,6 +125,13 @@
         var sudut3 = document.getElementById("sudut3");
         var hasil = document.getElementById("hasil");
         
+        var jadwal = "13.00-15.30";
+
+        function setJadwal(){
+            jadwal = document.getElementById("jadwal").value;
+            alert("Jadwal: " + jadwal)
+        }
+
         var listpoints = []
         var mycoord = []
 
@@ -140,7 +149,7 @@
         var currentH = date.getHours()
         var currentM = date.getMinutes()
         console.log(currentH, currentM)
-        var jadwal = "01.00-02.30";
+        // var jadwal = "01.00-02.30";
         // var jadwal = "13.00-15.30";
         var jadwalH1 = parseInt(jadwal.substr(0,2))
         var jadwalM1 = parseInt(jadwal.substr(3,5))
