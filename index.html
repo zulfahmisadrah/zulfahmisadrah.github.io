@@ -3,259 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geolocation</title>
+    <meta name="description" content="Developer profile of Muhammad Zul Fahmi Sadrah, a software developer based in South Sulawesi, Indonesia.">
+    <title>Muhammad Zul Fahmi Sadrah | Software Developer</title>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 </head>
-<body>
-    <div class="container pt-5">
-        <label for="jadwal">Jadwal</label>
-        <input id="jadwal" type="text" placeholder="ex: 13.00-15.30">
-        <button onclick="setJadwal()">Set Jadwal</button>
-        <p id="demo"></p>
+<body class="profile-page">
+    <header class="site-header" id="top">
+        <nav class="nav-shell" aria-label="Primary navigation">
+            <a class="brand" href="#top" aria-label="Muhammad Zul Fahmi Sadrah home">
+                <span class="brand-mark">MZFS</span>
+                <span>Muhammad Zul Fahmi Sadrah</span>
+            </a>
+            <div class="nav-links">
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-        <br>
-        <a href="custom_rectangle.html">Real Test</a>
+    <main>
+        <section class="hero section-shell" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow">Software Developer</p>
+                <h1 id="hero-title">Muhammad Zul Fahmi Sadrah</h1>
+                <p class="hero-summary">
+                    I build and maintain production web systems, enterprise integrations, and Android apps with a practical stack spanning Groovy, Java, Kotlin, Spring, Grails, MySQL, Kafka, Elasticsearch, React, and FastAPI.
+                </p>
+                <div class="hero-actions" aria-label="Profile links">
+                    <a class="button button-primary" href="mailto:zulfahmisadrah@gmail.com">
+                        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"></path>
+                            <path d="m22 6-10 7L2 6"></path>
+                        </svg>
+                        Email Me
+                    </a>
+                    <a class="button button-secondary" href="https://github.com/zulfahmisadrah" target="_blank" rel="noreferrer">
+                        <svg class="icon brand-icon" aria-hidden="true" viewBox="0 0 24 24">
+                            <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23A11.48 11.48 0 0 1 12 6.31c1.02 0 2.05.14 3.01.41 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.28c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"></path>
+                        </svg>
+                        GitHub
+                    </a>
+                    <a class="button button-secondary" href="https://linkedin.com/in/zulfahmisadrah" target="_blank" rel="noreferrer">
+                        <svg class="icon brand-icon" aria-hidden="true" viewBox="0 0 24 24">
+                            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.53V9H7.1v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"></path>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
 
-        <br>
-        <button onclick="buka()">Buka Presensi</button>
-        <br>
-        <button onclick="tutup()">Tutup Presensi</button>
-        <br><br>
-        <button onclick="absen()">Lakukan Presensi</button>
-        <p id="hasil"></p>
+            <aside class="hero-panel" aria-label="Profile highlights">
+                <div class="panel-item">
+                    <span class="panel-icon" aria-hidden="true">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </span>
+                    <span>
+                        <span class="panel-label">Location</span>
+                        <strong>South Sulawesi, Indonesia</strong>
+                    </span>
+                </div>
+                <div class="panel-item">
+                    <span class="panel-icon" aria-hidden="true">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                            <path d="M8 20h8"></path>
+                            <path d="M12 16v4"></path>
+                        </svg>
+                    </span>
+                    <span>
+                        <span class="panel-label">Focus</span>
+                        <strong>Backend systems, mobile apps</strong>
+                    </span>
+                </div>
+            </aside>
+        </section>
 
-        <div id="map" style="width: 1000px; height: 600px;"></div>
-    </div>
+        <section class="metrics-section section-shell" aria-label="Career highlights">
+            <div class="metrics">
+                <div>
+                    <strong>4+</strong>
+                    <span>Years professional development</span>
+                </div>
+                <div>
+                    <strong>3</strong>
+                    <span>Published Android apps</span>
+                </div>
+            </div>
+        </section>
 
-    <script src="js/jquery-3.4.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-        var newMap = L.map('map').setView([-5.2327875,119.5032977], 19);
-        var greenIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [15, 21],
-            iconAnchor: [7, 21],
-            popupAnchor: [1, -23],
-            shadowSize: [21, 21]
-        });
-        var redIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-        var latlngs = [[-5.233,119.5035], [-5.23285,119.5033]];
-        var rectOptions = {color: 'Red', weight: 1}
-        var rectangle = L.rectangle(latlngs, rectOptions);
-        rectangle.addTo(newMap);
-        L.marker([-5.2327875,119.5032977], {icon: redIcon}).addTo(newMap);//outside
-        L.marker([-5.2329,119.5034]).addTo(newMap); //inside
-        L.marker([-5.233,119.5035], {icon: greenIcon}).addTo(newMap);
-        L.marker([-5.23285,119.5035], {icon: greenIcon}).addTo(newMap);
-        L.marker([-5.233,119.5033], {icon: greenIcon}).addTo(newMap);
-        L.marker([-5.23285,119.5033], {icon: greenIcon}).addTo(newMap);
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href=”http://osm.org/copyright”>OpenStreetMap</a> contributors'
-        }).addTo(newMap);
-    </script>
+        <section class="section-shell split-section" id="about">
+            <div class="section-heading">
+                <p class="eyebrow">Profile</p>
+                <h2>Developer for enterprise systems and practical products.</h2>
+            </div>
+            <div class="section-body">
+                <p>
+                    I am a software developer with experience in remote international teams, mostly focused on backend development for production websites and enterprise financial systems. My work covers feature delivery, bug fixing, API integrations, database-backed applications, analytics reporting, and mobile products published to Google Play.
+                </p>
+                <p>
+                    I earned a Bachelor of Informatics Engineering from Universitas Hasanuddin and completed a final project on real-time multi-face recognition for student attendance.
+                </p>
+            </div>
+        </section>
 
-    <script>
-        function pointInRectangle(m, r){
-            var AB = vector(r.A, r.B);
-            var AM = vector(r.A, m);
-            var BC = vector(r.B, r.C);
-            var BM = vector(r.B, m);
+        <section class="section-shell" id="experience">
+            <div class="section-heading wide-heading">
+                <p class="eyebrow">Experience</p>
+                <h2>Recent Work</h2>
+            </div>
 
-            var dotABAM = dot(AB, AM);
-            var dotABAB = dot(AB, AB);
-            var dotBCBM = dot(BC, BM);
-            var dotBCBC = dot(BC, BC);
-            return 0 <= dotABAM && dotABAM <= dotABAB && 0 <= dotBCBM && dotBCBM <= dotBCBC;
-        }
+            <div class="timeline">
+                <article class="timeline-item">
+                    <div class="timeline-date">Nov 2024 - Present</div>
+                    <div class="timeline-content">
+                        <h3>Software Developer</h3>
+                        <p class="meta">Savant Degrees Pte. Ltd. &middot; Singapore &middot; Remote</p>
+                        <p>Backend developer on project software solutions aligned with user needs and business objectives, including database and web development across the company stack.</p>
+                        <p>Collaborate with developers to review implementations and improve delivery processes.</p>
+                    </div>
+                </article>
 
-        function vector(p1, p2){
-            return{
-                x: (p2.x - p1.x),
-                y: (p2.y - p1.y)
-            };
-        }
+                <article class="timeline-item">
+                    <div class="timeline-date">Mar 2024 - Aug 2024</div>
+                    <div class="timeline-content">
+                        <h3>IT Engineer Trainee</h3>
+                        <p class="meta">Human Resocia Co. Ltd. &middot; Tokyo &middot; Remote</p>
+                        <p>Completed a Japanese language training program for IT engineers preparing to work abroad in Japan.</p>
+                    </div>
+                </article>
 
-        function dot(u, v){
-            return u.x * v.x + u.y * v.y;
-        }
-    </script>
+                <article class="timeline-item">
+                    <div class="timeline-date">Mar 2021 - Feb 2024</div>
+                    <div class="timeline-content">
+                        <h3>Software Developer</h3>
+                        <p class="meta">Fairtech Pte. Ltd. &middot; Singapore &middot; Remote</p>
+                        <p>Developed and maintained the website of a multinational camera and printer manufacturing corporation.</p>
+                        <p>Delivered bug fixes and new features using Grails, jQuery, Elasticsearch, MySQL, REST APIs, Kafka, and microservices.</p>
+                        <p>Created website analytics reports using Google Analytics, Google Tag Manager, and Google Looker Studio.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-    <script>
-        var x = document.getElementById("demo");
-        var sudut1 = document.getElementById("sudut1");
-        var sudut2 = document.getElementById("sudut2");
-        var sudut3 = document.getElementById("sudut3");
-        var sudut3 = document.getElementById("sudut3");
-        var hasil = document.getElementById("hasil");
-        
-        var allowed = false;
-        var isInSchedule = false;
+        <section class="section-shell" id="projects">
+            <div class="section-heading wide-heading">
+                <p class="eyebrow">Projects</p>
+                <h2>Selected Builds</h2>
+            </div>
 
-        var jadwal = "13.00-15.30";
-        var date = new Date();
-        var currentTime = date.getTime();
-        var currentH = date.getHours()
-        var currentM = date.getMinutes()
-        console.log(currentH, currentM)
-        // var jadwal = "01.00-02.30";
-        // var jadwal = "13.00-15.30";
-        var jadwalH1 = jadwal.substr(0,2)
-        var jadwalM1 = jadwal.substr(3,2)
-        var jadwalH2 = jadwal.substr(6,2)
-        var jadwalM2 = jadwal.substr(9,2)
-        console.log(jadwal, jadwalH1, jadwalM1, jadwalH2, jadwalM2)
-        
-        function setJadwal(){
-            jadwal = document.getElementById("jadwal").value;
-            jadwalH1 = jadwal.substr(0,2)
-            jadwalM1 = jadwal.substr(3,2)
-            jadwalH2 = jadwal.substr(6,2)
-            jadwalM2 = jadwal.substr(9,2)
-            console.log(jadwalH1, jadwalM1, jadwalH2, jadwalM2)
-            alert("Jadwal: " + jadwal)
-        }
+            <div class="project-grid">
+                <article class="project-card featured-project">
+                    <div class="project-topline">
+                        <span>Enterprise Finance</span>
+                        <span>2024 - Present</span>
+                    </div>
+                    <h3>International Telecommunication Corporation Website</h3>
+                    <p>Develop and maintain an enterprise financial ecosystem for corporate product, customer, revenue, expense, billing, and invoicing workflows with SAP integration.</p>
+                    <p class="tech-list">Groovy &middot; JavaScript &middot; Spring &middot; Stripes &middot; Gripes &middot; jQuery &middot; MySQL &middot; SAP</p>
+                </article>
 
-        var listpoints = []
-        var mycoord = []
+                <article class="project-card">
+                    <div class="project-topline">
+                        <span>Android App</span>
+                        <span>2026</span>
+                    </div>
+                    <h3>FinancialQ</h3>
+                    <p>Personal finance app for tracking expenses, income, transfers, account balances, and cashflow.</p>
+                    <p class="tech-list">Kotlin &middot; Jetpack Compose &middot; Room &middot; SQLite &middot; AdMob &middot; MVVM</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.sadrahsolutions.financialq" target="_blank" rel="noreferrer">View on Google Play</a>
+                </article>
 
-        var r = {}
-        var m = {}
+                <article class="project-card">
+                    <div class="project-topline">
+                        <span>Machine Learning</span>
+                        <span>2021 - 2022</span>
+                    </div>
+                    <h3>Student Attendance Management System</h3>
+                    <p>Web app that manages attendance by recognizing students' faces from smartphone photos with 95% accuracy.</p>
+                    <p class="tech-list">Python &middot; FastAPI &middot; React &middot; Redux &middot; TensorFlow &middot; MTCNN &middot; HOG</p>
+                    <a href="https://github.com/zulfahmisadrah/hog-attendance" target="_blank" rel="noreferrer">Frontend Repo</a>
+                    <a href="https://github.com/zulfahmisadrah/hog-attendance-api" target="_blank" rel="noreferrer">API Repo</a>
+                </article>
 
-        var options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        };
+                <article class="project-card">
+                    <div class="project-topline">
+                        <span>Corporate Web</span>
+                        <span>2021 - 2024</span>
+                    </div>
+                    <h3>Camera and Printer Product Website</h3>
+                    <p>Maintained product, pricing, warranty, where-to-buy, and event information for a multinational manufacturing corporation.</p>
+                    <p class="tech-list">Groovy &middot; Grails &middot; jQuery &middot; MySQL &middot; Spring &middot; Elasticsearch &middot; Kafka</p>
+                </article>
 
-        function buka(){
-            checkInSchedule()
-            if(isInSchedule){
-                allowed = true;
-                alert("Presensi dibuka");
-            }else{
-                alert("Belum masuk jadwal mata kuliah")
-            }
-        }
+                <article class="project-card">
+                    <div class="project-topline">
+                        <span>Android App</span>
+                        <span>2020</span>
+                    </div>
+                    <h3>Simukom Perawat App</h3>
+                    <p>Nurse competency test exercise and simulation app with articles, forum features, and Google Play distribution.</p>
+                    <p class="tech-list">Kotlin &middot; Firebase &middot; SQLite &middot; AdMob &middot; MVVM</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.zulfahmi.simukomperawat" target="_blank" rel="noreferrer">View on Google Play</a>
+                </article>
+            </div>
+        </section>
 
-        function tutup(){
-            alert("Presensi ditutup");
-            allowed = false;
-        }
+        <section class="section-shell" id="skills">
+            <div class="section-heading wide-heading">
+                <p class="eyebrow">Skills</p>
+                <h2>Technology Stack</h2>
+            </div>
 
-        function checkInSchedule(){
-            var jadwal1 = parseInt("" +jadwalH1 + jadwalM1)
-            var jadwal2 = parseInt("" +jadwalH2 + jadwalM2)
-            var current = parseInt("" +currentH + currentM)
-            console.log(jadwal1, jadwal2, current)
-            if (current>=jadwal1 && current<=jadwal2) {
-                isInSchedule = true;
-                // allowed = true;
-            }else{
-                isInSchedule = false;
-            }
-        }
+            <div class="skill-grid">
+                <section class="skill-group" aria-labelledby="programming-title">
+                    <h3 id="programming-title">Programming</h3>
+                    <div class="tag-list">
+                        <span>Groovy</span>
+                        <span>Java</span>
+                        <span>Kotlin</span>
+                        <span>JavaScript</span>
+                        <span>Python</span>
+                        <span>PHP</span>
+                        <span>C++</span>
+                        <span>C#</span>
+                        <span>MySQL</span>
+                    </div>
+                </section>
 
-        function absen(){
-            getLocation(0);
-        }
+                <section class="skill-group" aria-labelledby="framework-title">
+                    <h3 id="framework-title">Frameworks</h3>
+                    <div class="tag-list">
+                        <span>Grails</span>
+                        <span>Stripes</span>
+                        <span>Spring Boot</span>
+                        <span>React</span>
+                        <span>FastAPI</span>
+                        <span>Microservices</span>
+                        <span>Jetpack Compose</span>
+                        <span>MVVM</span>
+                    </div>
+                </section>
 
-        function getLocation(sudut) {
-            if (navigator.geolocation) {
-                switch(sudut){
-                    case 0: navigator.geolocation.getCurrentPosition(returnPosition, error, options); break;
-                    case 1: navigator.geolocation.getCurrentPosition(showPosition1, error, options); break;
-                    case 2: navigator.geolocation.getCurrentPosition(showPosition2, error, options); break;
-                    case 3: navigator.geolocation.getCurrentPosition(showPosition3, error, options); break;
-                    case 4: navigator.geolocation.getCurrentPosition(showPosition4, error, options); break;
-                    default: navigator.geolocation.getCurrentPosition(showPosition, error, options);
+                <section class="skill-group" aria-labelledby="platform-title">
+                    <h3 id="platform-title">Platforms & Tools</h3>
+                    <div class="tag-list">
+                        <span>Git</span>
+                        <span>Jira</span>
+                        <span>Postman</span>
+                        <span>IntelliJ IDEA</span>
+                        <span>Elasticsearch</span>
+                        <span>Kafka</span>
+                        <span>Google Analytics</span>
+                        <span>Google Tag Manager</span>
+                        <span>Looker Studio</span>
+                        <span>Power BI</span>
+                    </div>
+                </section>
+            </div>
+        </section>
 
-                }
-            } else { 
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
+        <section class="section-shell two-column-section">
+            <section class="detail-panel" aria-labelledby="education-title">
+                <p class="eyebrow">Education</p>
+                <h2 id="education-title">Universitas Hasanuddin</h2>
+                <p class="meta">Bachelor of Informatics Engineering &middot; Aug 2017 - Jul 2022</p>
+                <p>GPA: 3.89/4.00. Final project: Student Attendance System based on Real-time Multi-face Recognition.</p>
+            </section>
 
-        function returnPosition(position){
-            var koord = position.coords;
-            mycoord.push(koord.latitude, koord.longitude);
-            // r = {
-            //     A: {x: listpoints[0], y: listpoints[1]},
-            //     B: {x: listpoints[2], y: listpoints[3]},
-            //     C: {x: listpoints[4], y: listpoints[5]},
-            //     D: {x: listpoints[6], y: listpoints[7]}
-            // }
-            r = {
-                A: {x: -5.233, y: 119.5035},
-                B: {x: -5.23285, y: 119.5035},
-                C: {x: -5.233, y: 119.5033},
-                D: {x: -5.23285, y: 119.5033},
-            }
-            // m = {x: mycoord[0], y: mycoord[1]};
-            // m = {x: -5.2329, y: 119.5034}; //inside
-            m = {x: -5.2327875, y: 119.5032977}; //outside
-            // m = {x: -5.233, y: 119.5035}; //inline
-            var result = pointInRectangle(m, r);
-            var keterangan;
-            
-            if(allowed){
-                if(result){
-                    keterangan =  "Hadir (Di dalam Area)"
-                }else{
-                    keterangan =  "Gagal, Anda berada di luar area"
-                }
-                hasil.innerHTML = "Koordinat Anda: " + mycoord[0] + ", " + mycoord[1] + "<br>Keterangan: " + keterangan;
-            }else{
-                alert("Presensi belum dibuka")
-            }
-            
-        }
+            <section class="detail-panel" aria-labelledby="certification-title">
+                <p class="eyebrow">Certifications</p>
+                <h2 id="certification-title">Continuous Learning</h2>
+                <ul class="compact-list">
+                    <li>Spring Boot: Beginner to Advanced, Programmer Zaman Now on Udemy, Oct 2024.</li>
+                    <li>Kotlin Android Developer Expert, Dicoding, Dec 2018.</li>
+                </ul>
+            </section>
+        </section>
 
-        function showPosition(position) {
-            var koord = position.coords;
-            x.innerHTML =  "[Lat,Long]: " + koord.latitude + ", " + koord.longitude;
-        }
+        <section class="contact-section section-shell" id="contact">
+            <div>
+                <p class="eyebrow">Contact</p>
+                <h2>Let's build practical software.</h2>
+                <p>Available for backend engineering, web systems, integrations, analytics, and Android product work.</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:zulfahmisadrah@gmail.com">
+                    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"></path>
+                        <path d="m22 6-10 7L2 6"></path>
+                    </svg>
+                    Email
+                </a>
+                <a href="https://github.com/zulfahmisadrah" target="_blank" rel="noreferrer">
+                    <svg class="icon brand-icon" aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23A11.48 11.48 0 0 1 12 6.31c1.02 0 2.05.14 3.01.41 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.28c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"></path>
+                    </svg>
+                    Github
+                </a>
+                <a href="https://linkedin.com/in/zulfahmisadrah" target="_blank" rel="noreferrer">
+                    <svg class="icon brand-icon" aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.53V9H7.1v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"></path>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </section>
+    </main>
 
-        function showPosition1(position) {
-            var koord = position.coords;
-            sudut1.innerHTML =  "#1 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
-            listpoints.push(koord.latitude, koord.longitude);    
-        }
-
-        function showPosition2(position) {
-            var koord = position.coords;
-            sudut2.innerHTML =  "#2 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
-            listpoints.push(koord.latitude, koord.longitude);
-        }
-
-        function showPosition3(position) {
-            var koord = position.coords;
-            sudut3.innerHTML =  "#3 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
-            listpoints.push(koord.latitude, koord.longitude);
-        }
-
-        function showPosition4(position) {
-            var koord = position.coords;
-            sudut4.innerHTML =  "#4 [Lat,Long]: " + koord.latitude + ", " + koord.longitude;
-            listpoints.push(koord.latitude, koord.longitude);
-        }
-
-        function error(err) {
-            console.warn(`ERROR(${err.code}): ${err.message}`);
-        }
-    </script>
-    
-
+    <footer class="site-footer">
+        <p>&copy; 2026 Muhammad Zul Fahmi Sadrah.</p>
+    </footer>
 </body>
 </html>
